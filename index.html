@@ -3,27 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sideris - Dashboard de Optimización Matemática</title>
+    <title>Sideris Core ⚡ Dashboard de Optimización Matemática</title>
+    <link rel="icon" href="data:,">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
 </head>
 <body>
 
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
     <div class="dashboard-container">
-        
+
         <header class="dashboard-header">
             <div class="logo">
-                <h2>⚡ Sideris Core</h2>
-                <p>Módulo de Optimización de Infraestructura v2.1</p>
+                <span class="logo-spark">⚡</span>
+                <span class="logo-text">SIDERIS<span class="logo-text-accent">CORE</span></span>
             </div>
             <div class="project-badge">ABPro: Cálculo Diferencial</div>
         </header>
+
+        <section class="hero-banner">
+            <div class="hero-tape hero-tape-1"></div>
+            <div class="hero-tape hero-tape-2"></div>
+            <div class="hero-overlay">
+                <h1 class="hero-title">CHAOS <span>LAB</span></h1>
+                <p class="hero-subtitle">Centro de Mando · Optimización de Servidores con Cálculo Diferencial</p>
+            </div>
+        </section>
 
         <div class="dashboard-body">
             
             <section class="panel left-panel">
                 <div class="card">
                     <h3>📥 Parámetros del Sistema</h3>
-                    <p class="section-desc">Ingrese los costos operativos estimados para calcular el punto crítico de equilibrio técnico-económico.</p>
+                    <p class="section-desc">Ingresa los costos operativos estimados para calcular el punto crítico de equilibrio técnico-económico.</p>
                     
                     <div class="form-group">
                         <label for="nombreSim">Nombre de la simulación:</label>
@@ -42,11 +58,11 @@
                         <input type="number" id="latencia" placeholder="Ej: 20000">
                     </div>
                     
-                    <button class="btn-primary" onclick="procesarCalculo()">Ejecutar Optimización por Derivadas</button>
+                    <button class="btn-primary" onclick="procesarCalculo()">⚡ Ejecutar Optimización</button>
                 </div>
 
                 <div class="card glossary-card">
-                    <h3>🧠 Sustento Científico y Matemático</h3>
+                    <h3>🧠 Archivo Científico</h3>
                     <div class="glossary-item">
                         <strong>La Variable Independiente (x):</strong> Representa la cantidad física de servidores que debemos mantener encendidos concurrentemente.
                     </div>
@@ -54,7 +70,13 @@
                         <strong>Función de Costo Total C(x):</strong> Suma el costo que sube linealmente con la energía ($a \cdot x$) y el costo que baja de forma inversamente proporcional a los servidores ($b / x$). El objetivo es hallar el "valle" o punto más bajo de esta curva.
                     </div>
                     <div class="glossary-item">
-                        <strong>La Primera Derivada C'(x):</strong> Mide la tasa de cambio instantánea del costo. Al igualarla a cero ($C'(x) = 0$), encontramos algebraicamente el Punto Crítico exacto donde la pendiente de la curva es completamente horizontal, garantizando matemáticamente el costo mínimo absoluto.
+                        <strong>La Primera Derivada C'(x):</strong> Mide la tasa de cambio instantánea del costo. Al igualarla a cero ($C'(x) = 0$), encontramos algebraicamente el Punto Crítico exacto donde la pendiente de la curva es completamente horizontal.
+                    </div>
+                    <div class="glossary-item">
+                        <strong>Criterio de la Segunda Derivada C''(x):</strong> Un punto crítico solo es un mínimo si $C''(x) > 0$ (concavidad hacia arriba). Para este modelo $C''(x) = 2b/x^3$, que es siempre positivo cuando $b > 0$ y $x > 0$. Esto demuestra formalmente que el punto encontrado es un mínimo, no un máximo ni un punto de inflexión.
+                    </div>
+                    <div class="glossary-item">
+                        <strong>Caso General y Bordes:</strong> El modelo $C(x) = ax + b/x$ solo tiene sentido económico para $a, b > 0$ y $x > 0$ (no se puede operar con cero o menos servidores). Si $b$ es muy grande respecto a $a$, el óptimo exige muchos servidores para evitar la penalización por saturación; si $a$ domina, conviene mantener pocos nodos encendidos y asumir más riesgo de saturación. Si $a \to 0$, $x_{óptimo} \to \infty$ (no hay incentivo para apagar servidores); si $b \to 0$, $x_{óptimo} \to 0$, lo que en la práctica se trunca a 1 servidor por seguridad operativa.
                     </div>
                 </div>
             </section>
@@ -80,17 +102,31 @@
                     <div class="math-workflow">
                         <h4>Demostración Algebraica del Algoritmo:</h4>
                         <div class="equation"><strong>Modelo base:</strong> <span id="eqBase"></span></div>
-                        <div class="equation"><strong>Derivada de la función:</strong> <span id="eqDerivada"></span></div>
+                        <div class="equation"><strong>Primera derivada:</strong> <span id="eqDerivada"></span></div>
                         <div class="equation"><strong>Despeje del Punto Crítico:</strong> $x = \sqrt{b/a}$</div>
+                        <div class="equation"><strong>Segunda derivada:</strong> <span id="eqSegundaDerivada"></span></div>
+                        <div class="equation" id="confirmacionMinimo"></div>
                     </div>
 
-                    <button class="btn-secondary" onclick="guardarEnHistorial()">💾 Guardar Simulación en Historial</button>
+                    <div class="chart-wrapper">
+                        <canvas id="chartCosto"></canvas>
+                    </div>
+
+                    <button class="btn-secondary" onclick="guardarEnHistorial()">💾 Guardar en el Archivo</button>
                 </div>
 
                 <div class="card history-card">
-                    <h3>🗄️ Historial de Simulaciones Guardadas</h3>
-                    <p class="section-desc">Registros almacenados localmente en el navegador. Úselos para comparar diferentes escenarios informáticos.</p>
-                    
+                    <div class="history-card-header">
+                        <div>
+                            <h3>🗄️ Historial de Simulaciones</h3>
+                            <p class="section-desc">Registros almacenados localmente en el navegador. Úselos para comparar diferentes escenarios informáticos.</p>
+                        </div>
+                        <div class="export-buttons">
+                            <button class="btn-secondary btn-export" onclick="exportarHistorial('csv')">⬇️ CSV</button>
+                            <button class="btn-secondary btn-export" onclick="exportarHistorial('json')">⬇️ JSON</button>
+                        </div>
+                    </div>
+
                     <div class="table-responsive">
                         <table id="tablaHistorial">
                             <thead>

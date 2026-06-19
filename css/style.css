@@ -1,24 +1,48 @@
-/* Variables de Diseño (Temas de Color Profesionales de TI) */
+/* ============================================================
+   TEMA: "CHAOS LAB" — estética streamer / anime / neón-grunge
+   Inspirado en el collage de banner (papel rasgado, washi tape,
+   rosa/cian/morado neón, doodles blancos).
+   ============================================================ */
+
 :root {
-    --bg-main: #f8fafc;
-    --panel-bg: #ffffff;
-    --text-main: #1e293b;
-    --text-muted: #64748b;
-    --primary: #0f172a;
-    --primary-hover: #1e293b;
-    --accent: #2563eb;
-    --accent-hover: #1d4ed8;
-    --success: #16a34a;
-    --border: #e2e8f0;
-    --radius: 8px;
+    --bg-black: #0a0510;
+    --bg-black-2: #150a22;
+    --panel-bg: rgba(24, 14, 36, 0.86);
+    --panel-bg-solid: #1b1026;
+    --text-main: #f3ecff;
+    --text-muted: #b9a9d6;
+    --primary: #f3ecff;
+    --neon-pink: #ff2bd6;
+    --neon-pink-hover: #ff5ce6;
+    --neon-cyan: #25e6ff;
+    --neon-purple: #9b30ff;
+    --accent: var(--neon-pink);
+    --accent-hover: var(--neon-pink-hover);
+    --success: #39ffb0;
+    --danger: #ff3860;
+    --border: rgba(255, 255, 255, 0.14);
+    --radius: 10px;
+
+    /* Cursores personalizados (estrella rosa / rayo cian) */
+    --cursor-default: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgdmlld0JveD0iMCAwIDMwIDMwIj48cGF0aCBkPSJNMTUgMSBMMTguNSAxMSBMMjkgMTEgTDIwLjUgMTcuNSBMMjMuNSAyOCBMMTUgMjEuNSBMNi41IDI4IEw5LjUgMTcuNSBMMSAxMSBMMTEuNSAxMSBaIiBmaWxsPSIjZmYyYmQ2IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMS40IiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+") 6 4, auto;
+    --cursor-pointer: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgdmlld0JveD0iMCAwIDMwIDMwIj48cGF0aCBkPSJNMTcgMSBMNiAxNiBIMTMgTDEwIDI5IEwyNSAxMiBIMTYgWiIgZmlsbD0iIzI1ZTZmZiIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEuNCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==") 6 2, pointer;
 }
 
-body { 
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: var(--bg-main); 
+* { cursor: var(--cursor-default); }
+a, button, input[type="button"], .btn-export, label, [onclick] { cursor: var(--cursor-pointer); }
+
+body {
+    font-family: 'Rajdhani', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     color: var(--text-main);
-    margin: 0; 
+    margin: 0;
     padding: 20px;
+    min-height: 100vh;
+    background-color: var(--bg-black);
+    background-image:
+        radial-gradient(circle at 15% 10%, rgba(255, 43, 214, 0.16), transparent 40%),
+        radial-gradient(circle at 85% 20%, rgba(37, 230, 255, 0.14), transparent 45%),
+        radial-gradient(circle at 50% 90%, rgba(155, 48, 255, 0.16), transparent 50%);
+    background-attachment: fixed;
 }
 
 /* Layout del Dashboard */
@@ -27,27 +51,108 @@ body {
     margin: 0 auto;
 }
 
+/* Barra superior delgada con el wordmark */
 .dashboard-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 25px;
+    padding-bottom: 16px;
+    margin-bottom: 18px;
 }
 
-.dashboard-header h2 { margin: 0; font-size: 1.6rem; font-weight: 700; color: var(--primary); }
-.dashboard-header p { margin: 5px 0 0 0; color: var(--text-muted); font-size: 0.9rem; }
+.logo { display: flex; align-items: center; gap: 8px; }
+.logo-spark {
+    font-size: 1.5rem;
+    filter: drop-shadow(0 0 6px var(--neon-pink));
+}
+.logo-text {
+    font-family: 'Bangers', cursive;
+    font-size: 1.7rem;
+    letter-spacing: 1px;
+    color: var(--text-main);
+    text-shadow: 0 0 10px rgba(255, 43, 214, 0.6);
+}
+.logo-text-accent { color: var(--neon-cyan); text-shadow: 0 0 10px rgba(37, 230, 255, 0.7); }
 
 .project-badge {
-    background-color: #eff6ff;
-    color: var(--accent);
-    padding: 6px 14px;
+    background: linear-gradient(135deg, rgba(255,43,214,0.18), rgba(37,230,255,0.18));
+    color: var(--text-main);
+    padding: 7px 16px;
     border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    border: 1px solid #bfdbfe;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border: 1px solid var(--neon-pink);
+    box-shadow: 0 0 12px rgba(255, 43, 214, 0.35);
+    transform: rotate(-1.5deg);
 }
+
+/* ============================================================
+   HERO BANNER — el collage como protagonista visual
+   ============================================================ */
+.hero-banner {
+    position: relative;
+    height: 460px;
+    margin-bottom: 28px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 2px solid var(--neon-pink);
+    box-shadow:
+        0 0 25px rgba(255, 43, 214, 0.45),
+        0 0 70px rgba(37, 230, 255, 0.15);
+    background-color: var(--bg-black-2);
+    /* Si img/collage.jpg no existe todavía, queda el degradé de respaldo */
+    background-image:
+        linear-gradient(180deg, rgba(10,5,16,0.05) 0%, rgba(10,5,16,0.92) 92%),
+        linear-gradient(120deg, rgba(255,43,214,0.25), rgba(37,230,255,0.15), rgba(155,48,255,0.25)),
+        url("../img/collage.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-blend-mode: normal, overlay, normal;
+    display: flex;
+    align-items: flex-end;
+}
+
+.hero-overlay {
+    position: relative;
+    z-index: 2;
+    padding: 22px 28px;
+    width: 100%;
+}
+
+.hero-title {
+    font-family: 'Bangers', cursive;
+    font-size: 2.6rem;
+    margin: 0;
+    color: #fff;
+    letter-spacing: 2px;
+    text-shadow:
+        0 0 12px var(--neon-pink),
+        0 0 28px rgba(255, 43, 214, 0.7),
+        3px 3px 0 rgba(0,0,0,0.5);
+    transform: rotate(-1deg);
+}
+.hero-title span { color: var(--neon-cyan); text-shadow: 0 0 12px var(--neon-cyan), 0 0 28px rgba(37,230,255,0.7); }
+
+.hero-subtitle {
+    margin: 4px 0 0 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #e9defc;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+}
+
+/* Decoración tipo "washi tape" sobre el banner */
+.hero-tape {
+    position: absolute;
+    z-index: 3;
+    height: 22px;
+    background: repeating-linear-gradient(45deg, var(--neon-pink) 0 10px, var(--neon-cyan) 10px 20px);
+    opacity: 0.85;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+.hero-tape-1 { width: 140px; top: -8px; left: 30px; transform: rotate(-35deg); }
+.hero-tape-2 { width: 110px; top: -6px; right: 50px; transform: rotate(28deg); }
 
 .dashboard-body {
     display: grid;
@@ -59,70 +164,177 @@ body {
     .dashboard-body { grid-template-columns: 1fr; }
 }
 
-/* Estilo de Tarjetas Profesionales */
+/* ============================================================
+   TARJETAS — estilo "recorte de papel" sobre fondo oscuro
+   ============================================================ */
 .card {
     background: var(--panel-bg);
+    backdrop-filter: blur(6px);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 24px;
     margin-bottom: 25px;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255,255,255,0.02) inset;
+    position: relative;
 }
 
-.card h3 { margin-top: 0; margin-bottom: 10px; font-size: 1.15rem; color: var(--primary); }
+/* Filo neón sutil arriba de cada tarjeta, como cinta pegada */
+.card::before {
+    content: "";
+    position: absolute;
+    top: -1px; left: 18px; right: 18px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
+    border-radius: 0 0 4px 4px;
+    opacity: 0.9;
+}
+
+.card h3 {
+    margin-top: 0; margin-bottom: 10px; font-size: 1.15rem; color: var(--text-main);
+    font-family: 'Bangers', cursive; letter-spacing: 0.5px; font-weight: 400;
+    text-shadow: 0 0 8px rgba(255,43,214,0.35);
+}
 .section-desc { color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px; margin-top: 0; }
 
 /* Formularios de Entrada */
 .form-group { margin-bottom: 18px; }
-label { display: block; font-weight: 600; font-size: 0.9rem; color: #334155; margin-bottom: 5px; }
+label { display: block; font-weight: 700; font-size: 0.9rem; color: var(--text-main); margin-bottom: 5px; }
 .help-text { display: block; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 6px; }
 input {
     width: 100%; padding: 10px 12px; border: 1px solid var(--border);
-    border-radius: var(--radius); box-sizing: border-box; font-size: 0.95rem;
-    transition: all 0.2s; background: #fafafa;
+    border-radius: var(--radius); box-sizing: border-box; font-size: 0.98rem;
+    font-family: 'Rajdhani', sans-serif; font-weight: 600;
+    transition: all 0.2s; background: rgba(255,255,255,0.04); color: var(--text-main);
+    cursor: text;
 }
-input:focus { outline: none; border-color: var(--accent); background: #fff; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+input::placeholder { color: rgba(185, 169, 214, 0.55); }
+input:focus {
+    outline: none; border-color: var(--neon-cyan); background: rgba(37,230,255,0.06);
+    box-shadow: 0 0 0 3px rgba(37,230,255,0.18), 0 0 14px rgba(37,230,255,0.25);
+}
 
 /* Botones */
 button {
-    width: 100%; padding: 12px; font-size: 0.95rem; font-weight: 600;
-    border-radius: var(--radius); cursor: pointer; transition: all 0.2s;
+    width: 100%; padding: 12px; font-size: 1rem; font-weight: 700;
+    border-radius: var(--radius); transition: all 0.2s;
+    font-family: 'Rajdhani', sans-serif; letter-spacing: 0.5px;
 }
-.btn-primary { background-color: var(--accent); color: white; border: none; }
-.btn-primary:hover { background-color: var(--accent-hover); }
-.btn-secondary { background-color: #f1f5f9; color: #334155; border: 1px solid var(--border); margin-top: 15px;}
-.btn-secondary:hover { background-color: #e2e8f0; }
-.btn-danger { background-color: #fee2e2; color: #ef4444; border: none; padding: 4px 8px; font-size: 0.8rem; border-radius: 4px; width: auto;}
-.btn-danger:hover { background-color: #fca5a5; }
+.btn-primary {
+    background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+    color: #fff; border: none;
+    box-shadow: 0 0 14px rgba(255, 43, 214, 0.5);
+}
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--neon-pink-hover), var(--neon-purple));
+    box-shadow: 0 0 22px rgba(255, 43, 214, 0.8), 0 0 40px rgba(155, 48, 255, 0.4);
+    transform: translateY(-1px);
+}
+.btn-secondary {
+    background: rgba(37, 230, 255, 0.08); color: var(--neon-cyan);
+    border: 1px solid var(--neon-cyan); margin-top: 15px;
+    box-shadow: 0 0 10px rgba(37, 230, 255, 0.15);
+}
+.btn-secondary:hover { background: rgba(37, 230, 255, 0.18); box-shadow: 0 0 18px rgba(37, 230, 255, 0.4); }
+.btn-danger {
+    background: rgba(255, 56, 96, 0.12); color: var(--danger);
+    border: 1px solid rgba(255, 56, 96, 0.5); padding: 4px 8px; font-size: 0.8rem;
+    border-radius: 4px; width: auto;
+}
+.btn-danger:hover { background: rgba(255, 56, 96, 0.25); box-shadow: 0 0 10px rgba(255,56,96,0.4); }
 
 /* Panel de Glosario */
-.glossary-card { background: #f8fafc; border-style: dashed; }
-.glossary-item { font-size: 0.84rem; color: #475569; margin-bottom: 12px; line-height: 1.4; }
-.glossary-item strong { color: var(--primary); }
+.glossary-card { background: rgba(20, 10, 30, 0.7); border-style: dashed; border-color: rgba(255,255,255,0.18); }
+.glossary-item { font-size: 0.86rem; color: #d8cdf0; margin-bottom: 12px; line-height: 1.45; }
+.glossary-item strong { color: var(--neon-cyan); }
 
 /* Caja de Resultados Avanzada */
 .results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
 .result-box {
-    background: #f8fafc; border: 1px solid var(--border);
+    background: rgba(255,255,255,0.03); border: 1px solid var(--border);
     padding: 15px; border-radius: var(--radius); text-align: center;
 }
-.result-box.highlighted { border-left: 4px solid var(--success); background: #f0fdf4; }
-.res-label { display: block; font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
-.res-value { display: block; font-size: 1.8rem; font-weight: 700; color: var(--primary); margin: 5px 0; }
-.res-value.cost { color: #b45309; }
+.result-box.highlighted { border: 1px solid var(--success); box-shadow: 0 0 16px rgba(57,255,176,0.25); background: rgba(57,255,176,0.06); }
+.res-label { display: block; font-size: 0.8rem; color: var(--text-muted); font-weight: 600; }
+.res-value { display: block; font-size: 1.9rem; font-weight: 700; color: var(--text-main); margin: 5px 0; font-family: 'Bangers', cursive; }
+.res-value.cost { color: var(--neon-cyan); text-shadow: 0 0 10px rgba(37,230,255,0.5); }
 .res-sub { font-size: 0.75rem; color: var(--text-muted); }
 
 .math-workflow {
-    margin-top: 20px; background: #1e293b; color: #f8fafc;
-    padding: 15px; border-radius: var(--radius); font-family: monospace; font-size: 0.85rem;
+    margin-top: 20px; background: #0c0614; color: #e9defc; border: 1px solid var(--border);
+    padding: 15px; border-radius: var(--radius); font-family: 'Courier New', monospace; font-size: 0.85rem;
 }
-.math-workflow h4 { margin-top: 0; color: #38bdf8; margin-bottom: 10px; }
+.math-workflow h4 { margin-top: 0; color: var(--neon-cyan); margin-bottom: 10px; font-family: 'Rajdhani', sans-serif; }
 .equation { margin-bottom: 6px; }
 
-/* Tabla de Historial Clásica de TI */
+/* Gráfico de la curva de costo C(x) */
+.chart-wrapper {
+    margin-top: 20px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 15px;
+    position: relative;
+    height: 280px;
+    box-sizing: border-box;
+}
+.chart-wrapper canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Encabezado de la tarjeta de historial con acciones de exportación */
+.history-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.export-buttons { display: flex; gap: 8px; flex-shrink: 0; }
+.btn-export {
+    width: auto; margin-top: 0; padding: 8px 14px; font-size: 0.85rem; white-space: nowrap;
+    background: rgba(155,48,255,0.1); color: var(--neon-purple); border: 1px solid var(--neon-purple);
+}
+.btn-export:hover { background: rgba(155,48,255,0.25); box-shadow: 0 0 14px rgba(155,48,255,0.4); }
+
+/* Notificaciones tipo toast (reemplazo de alert()) */
+.toast-container {
+    position: fixed; top: 20px; right: 20px; z-index: 1000;
+    display: flex; flex-direction: column; gap: 10px;
+}
+.toast {
+    min-width: 240px; max-width: 360px; padding: 12px 16px;
+    border-radius: var(--radius); font-size: 0.9rem; font-weight: 700;
+    font-family: 'Rajdhani', sans-serif;
+    color: #0a0510; box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    opacity: 1; transition: opacity 0.3s, transform 0.3s;
+}
+.toast-success { background-color: var(--success); box-shadow: 0 0 18px rgba(57,255,176,0.5); }
+.toast-error { background-color: var(--danger); color: #fff; box-shadow: 0 0 18px rgba(255,56,96,0.5); }
+.toast-hide { opacity: 0; transform: translateX(20px); }
+
+/* Tabla de Historial */
 .table-responsive { width: 100%; overflow-x: auto; margin-top: 10px; }
 table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem; }
-th { background: #f1f5f9; padding: 12px; font-weight: 600; color: #475569; border-bottom: 2px solid var(--border); }
-td { padding: 12px; border-bottom: 1px solid var(--border); color: #334155; }
-tr:hover { background: #f8fafc; }
+th {
+    background: rgba(255,43,214,0.08); padding: 12px; font-weight: 700; color: var(--neon-pink);
+    border-bottom: 2px solid var(--border); font-size: 0.82rem; letter-spacing: 0.5px; text-transform: uppercase;
+}
+td { padding: 12px; border-bottom: 1px solid var(--border); color: var(--text-main); }
+tr:hover { background: rgba(255,255,255,0.03); }
 .empty-state { text-align: center; color: var(--text-muted); padding: 30px; font-size: 0.9rem; }
+
+@media(max-width: 600px) {
+    body { padding: 12px; }
+    .dashboard-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .hero-banner { height: 240px; }
+    .hero-title { font-size: 1.9rem; }
+    .results-grid { grid-template-columns: 1fr; }
+    .history-card-header { flex-direction: column; }
+    .export-buttons { width: 100%; }
+    .btn-export { flex: 1; }
+    .toast-container { left: 12px; right: 12px; top: 12px; }
+    .toast { max-width: none; width: 100%; box-sizing: border-box; }
+}
