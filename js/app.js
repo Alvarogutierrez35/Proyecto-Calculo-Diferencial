@@ -81,9 +81,9 @@ function procesarCalculo() {
 
     let confirmacion = document.getElementById('confirmacionMinimo');
     if (esMinimoConfirmado) {
-        confirmacion.innerHTML = `<strong style="color:#39ffb0;">✔ Mínimo confirmado:</strong> C''(x) &gt; 0, la curva es cóncava hacia arriba en este punto.`;
+        confirmacion.innerHTML = `<strong style="color:#4ade80;">✔ Mínimo confirmado:</strong> C''(x) &gt; 0, la curva es cóncava hacia arriba en este punto.`;
     } else {
-        confirmacion.innerHTML = `<strong style="color:#ff3860;">✘ Advertencia:</strong> no se pudo confirmar concavidad positiva.`;
+        confirmacion.innerHTML = `<strong style="color:#f87171;">✘ Advertencia:</strong> no se pudo confirmar concavidad positiva.`;
     }
 
     // Mostrar la sección de resultados ocultos con efecto visual directo
@@ -123,20 +123,20 @@ function dibujarGraficoCosto(a, b, x_optimo, costo_optimo) {
                 {
                     label: 'C(x) = costo total',
                     data: puntos,
-                    borderColor: '#25e6ff',
-                    backgroundColor: 'rgba(37,230,255,0.12)',
+                    borderColor: '#2563eb',
+                    backgroundColor: 'rgba(37,99,235,0.08)',
                     fill: true,
                     pointRadius: 0,
-                    borderWidth: 2.5,
+                    borderWidth: 2,
                     tension: 0.15
                 },
                 {
                     label: 'Punto óptimo',
                     data: [{ x: x_optimo, y: costo_optimo }],
-                    borderColor: '#ff2bd6',
-                    backgroundColor: '#ff2bd6',
-                    pointRadius: 7,
-                    pointHoverRadius: 8,
+                    borderColor: '#16a34a',
+                    backgroundColor: '#16a34a',
+                    pointRadius: 6,
+                    pointHoverRadius: 7,
                     showLine: false
                 }
             ]
@@ -147,18 +147,18 @@ function dibujarGraficoCosto(a, b, x_optimo, costo_optimo) {
             scales: {
                 x: {
                     type: 'linear',
-                    title: { display: true, text: 'Servidores activos (x)', color: '#b9a9d6' },
-                    ticks: { color: '#b9a9d6' },
-                    grid: { color: 'rgba(255,255,255,0.06)' }
+                    title: { display: true, text: 'Servidores activos (x)', color: '#64748b' },
+                    ticks: { color: '#64748b' },
+                    grid: { color: 'rgba(15,23,42,0.06)' }
                 },
                 y: {
-                    title: { display: true, text: 'Costo total ($)', color: '#b9a9d6' },
-                    ticks: { color: '#b9a9d6' },
-                    grid: { color: 'rgba(255,255,255,0.06)' }
+                    title: { display: true, text: 'Costo total ($)', color: '#64748b' },
+                    ticks: { color: '#64748b' },
+                    grid: { color: 'rgba(15,23,42,0.06)' }
                 }
             },
             plugins: {
-                legend: { position: 'bottom', labels: { color: '#f3ecff' } }
+                legend: { position: 'bottom', labels: { color: '#1e293b' } }
             }
         }
     });

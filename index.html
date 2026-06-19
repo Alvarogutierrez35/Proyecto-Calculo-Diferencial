@@ -3,11 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sideris Core ⚡ Dashboard de Optimización Matemática</title>
+    <title>Sideris - Dashboard de Optimización Matemática</title>
     <link rel="icon" href="data:,">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
 </head>
@@ -19,28 +16,19 @@
 
         <header class="dashboard-header">
             <div class="logo">
-                <span class="logo-spark">⚡</span>
-                <span class="logo-text">SIDERIS<span class="logo-text-accent">CORE</span></span>
+                <h2>⚡ Sideris Core</h2>
+                <p>Módulo de Optimización de Infraestructura v2.1</p>
             </div>
             <div class="project-badge">ABPro: Cálculo Diferencial</div>
         </header>
 
-        <section class="hero-banner">
-            <div class="hero-tape hero-tape-1"></div>
-            <div class="hero-tape hero-tape-2"></div>
-            <div class="hero-overlay">
-                <h1 class="hero-title">CHAOS <span>LAB</span></h1>
-                <p class="hero-subtitle">Centro de Mando · Optimización de Servidores con Cálculo Diferencial</p>
-            </div>
-        </section>
-
         <div class="dashboard-body">
-            
+
             <section class="panel left-panel">
                 <div class="card">
                     <h3>📥 Parámetros del Sistema</h3>
-                    <p class="section-desc">Ingresa los costos operativos estimados para calcular el punto crítico de equilibrio técnico-económico.</p>
-                    
+                    <p class="section-desc">Ingrese los costos operativos estimados para calcular el punto crítico de equilibrio técnico-económico.</p>
+
                     <div class="form-group">
                         <label for="nombreSim">Nombre de la simulación:</label>
                         <input type="text" id="nombreSim" placeholder="Ej: Servidores Servidor Web Temuco">
@@ -51,18 +39,18 @@
                         <span class="help-text">Representa el gasto en electricidad y mantenimiento base de mantener un nodo encendido.</span>
                         <input type="number" id="energia" placeholder="Ej: 50">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="latencia">Costo de penalización por saturación del servicio ($):</label>
                         <span class="help-text">Pérdida económica estimada si el centro de datos colapsa o ralentiza los procesos por falta de nodos.</span>
                         <input type="number" id="latencia" placeholder="Ej: 20000">
                     </div>
-                    
-                    <button class="btn-primary" onclick="procesarCalculo()">⚡ Ejecutar Optimización</button>
+
+                    <button class="btn-primary" onclick="procesarCalculo()">Ejecutar Optimización por Derivadas</button>
                 </div>
 
                 <div class="card glossary-card">
-                    <h3>🧠 Archivo Científico</h3>
+                    <h3>🧠 Sustento Científico y Matemático</h3>
                     <div class="glossary-item">
                         <strong>La Variable Independiente (x):</strong> Representa la cantidad física de servidores que debemos mantener encendidos concurrentemente.
                     </div>
@@ -80,12 +68,12 @@
                     </div>
                 </div>
             </section>
-            
+
             <section class="panel right-panel">
-                
+
                 <div class="card result-card" id="cardResultado" style="display: none;">
                     <h3>📊 Diagnóstico de la Solución Óptima</h3>
-                    
+
                     <div class="results-grid">
                         <div class="result-box highlighted">
                             <span class="res-label">Nodos Óptimos Computados</span>
@@ -112,13 +100,13 @@
                         <canvas id="chartCosto"></canvas>
                     </div>
 
-                    <button class="btn-secondary" onclick="guardarEnHistorial()">💾 Guardar en el Archivo</button>
+                    <button class="btn-secondary" onclick="guardarEnHistorial()">💾 Guardar Simulación en Historial</button>
                 </div>
 
                 <div class="card history-card">
                     <div class="history-card-header">
                         <div>
-                            <h3>🗄️ Historial de Simulaciones</h3>
+                            <h3>🗄️ Historial de Simulaciones Guardadas</h3>
                             <p class="section-desc">Registros almacenados localmente en el navegador. Úselos para comparar diferentes escenarios informáticos.</p>
                         </div>
                         <div class="export-buttons">
