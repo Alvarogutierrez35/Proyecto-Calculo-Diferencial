@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sideris - Dashboard de Optimización Matemática</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        
+        <header class="dashboard-header">
+            <div class="logo">
+                <h2>⚡ Sideris Core</h2>
+                <p>Módulo de Optimización de Infraestructura v2.1</p>
+            </div>
+            <div class="project-badge">ABPro: Cálculo Diferencial</div>
+        </header>
+
+        <div class="dashboard-body">
+            
+            <section class="panel left-panel">
+                <div class="card">
+                    <h3>📥 Parámetros del Sistema</h3>
+                    <p class="section-desc">Ingrese los costos operativos estimados para calcular el punto crítico de equilibrio técnico-económico.</p>
+                    
+                    <div class="form-group">
+                        <label for="nombreSim">Nombre de la simulación:</label>
+                        <input type="text" id="nombreSim" placeholder="Ej: Servidores Servidor Web Temuco">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="energia">Costo de energía lineal por servidor activo ($/u):</label>
+                        <span class="help-text">Representa el gasto en electricidad y mantenimiento base de mantener un nodo encendido.</span>
+                        <input type="number" id="energia" placeholder="Ej: 50">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="latencia">Costo de penalización por saturación del servicio ($):</label>
+                        <span class="help-text">Pérdida económica estimada si el centro de datos colapsa o ralentiza los procesos por falta de nodos.</span>
+                        <input type="number" id="latencia" placeholder="Ej: 20000">
+                    </div>
+                    
+                    <button class="btn-primary" onclick="procesarCalculo()">Ejecutar Optimización por Derivadas</button>
+                </div>
+
+                <div class="card glossary-card">
+                    <h3>🧠 Sustento Científico y Matemático</h3>
+                    <div class="glossary-item">
+                        <strong>La Variable Independiente (x):</strong> Representa la cantidad física de servidores que debemos mantener encendidos concurrentemente.
+                    </div>
+                    <div class="glossary-item">
+                        <strong>Función de Costo Total C(x):</strong> Suma el costo que sube linealmente con la energía ($a \cdot x$) y el costo que baja de forma inversamente proporcional a los servidores ($b / x$). El objetivo es hallar el "valle" o punto más bajo de esta curva.
+                    </div>
+                    <div class="glossary-item">
+                        <strong>La Primera Derivada C'(x):</strong> Mide la tasa de cambio instantánea del costo. Al igualarla a cero ($C'(x) = 0$), encontramos algebraicamente el Punto Crítico exacto donde la pendiente de la curva es completamente horizontal, garantizando matemáticamente el costo mínimo absoluto.
+                    </div>
+                </div>
+            </section>
+            
+            <section class="panel right-panel">
+                
+                <div class="card result-card" id="cardResultado" style="display: none;">
+                    <h3>📊 Diagnóstico de la Solución Óptima</h3>
+                    
+                    <div class="results-grid">
+                        <div class="result-box highlighted">
+                            <span class="res-label">Nodos Óptimos Computados</span>
+                            <span class="res-value" id="numServidores">0</span>
+                            <span class="res-sub">Servidores físicos</span>
+                        </div>
+                        <div class="result-box">
+                            <span class="res-label">Costo Mínimo Estimado</span>
+                            <span class="res-value cost" id="costoMinimo">$0</span>
+                            <span class="res-sub">Gasto total por hora</span>
+                        </div>
+                    </div>
+
+                    <div class="math-workflow">
+                        <h4>Demostración Algebraica del Algoritmo:</h4>
+                        <div class="equation"><strong>Modelo base:</strong> <span id="eqBase"></span></div>
+                        <div class="equation"><strong>Derivada de la función:</strong> <span id="eqDerivada"></span></div>
+                        <div class="equation"><strong>Despeje del Punto Crítico:</strong> $x = \sqrt{b/a}$</div>
+                    </div>
+
+                    <button class="btn-secondary" onclick="guardarEnHistorial()">💾 Guardar Simulación en Historial</button>
+                </div>
+
+                <div class="card history-card">
+                    <h3>🗄️ Historial de Simulaciones Guardadas</h3>
+                    <p class="section-desc">Registros almacenados localmente en el navegador. Úselos para comparar diferentes escenarios informáticos.</p>
+                    
+                    <div class="table-responsive">
+                        <table id="tablaHistorial">
+                            <thead>
+                                <tr>
+                                    <th>Nombre / Escenario</th>
+                                    <th>Costo Energía (a)</th>
+                                    <th>Penalización (b)</th>
+                                    <th>Solución (x)</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                </tbody>
+                        </table>
+                        <div id="historialVacio" class="empty-state">No hay simulaciones guardadas en el registro.</div>
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

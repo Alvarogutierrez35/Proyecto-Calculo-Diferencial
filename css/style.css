@@ -1,0 +1,128 @@
+/* Variables de Diseño (Temas de Color Profesionales de TI) */
+:root {
+    --bg-main: #f8fafc;
+    --panel-bg: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --primary: #0f172a;
+    --primary-hover: #1e293b;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --success: #16a34a;
+    --border: #e2e8f0;
+    --radius: 8px;
+}
+
+body { 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-main); 
+    color: var(--text-main);
+    margin: 0; 
+    padding: 20px;
+}
+
+/* Layout del Dashboard */
+.dashboard-container {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 25px;
+}
+
+.dashboard-header h2 { margin: 0; font-size: 1.6rem; font-weight: 700; color: var(--primary); }
+.dashboard-header p { margin: 5px 0 0 0; color: var(--text-muted); font-size: 0.9rem; }
+
+.project-badge {
+    background-color: #eff6ff;
+    color: var(--accent);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid #bfdbfe;
+}
+
+.dashboard-body {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 25px;
+}
+
+@media(max-width: 900px) {
+    .dashboard-body { grid-template-columns: 1fr; }
+}
+
+/* Estilo de Tarjetas Profesionales */
+.card {
+    background: var(--panel-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 25px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+}
+
+.card h3 { margin-top: 0; margin-bottom: 10px; font-size: 1.15rem; color: var(--primary); }
+.section-desc { color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px; margin-top: 0; }
+
+/* Formularios de Entrada */
+.form-group { margin-bottom: 18px; }
+label { display: block; font-weight: 600; font-size: 0.9rem; color: #334155; margin-bottom: 5px; }
+.help-text { display: block; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 6px; }
+input {
+    width: 100%; padding: 10px 12px; border: 1px solid var(--border);
+    border-radius: var(--radius); box-sizing: border-box; font-size: 0.95rem;
+    transition: all 0.2s; background: #fafafa;
+}
+input:focus { outline: none; border-color: var(--accent); background: #fff; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+
+/* Botones */
+button {
+    width: 100%; padding: 12px; font-size: 0.95rem; font-weight: 600;
+    border-radius: var(--radius); cursor: pointer; transition: all 0.2s;
+}
+.btn-primary { background-color: var(--accent); color: white; border: none; }
+.btn-primary:hover { background-color: var(--accent-hover); }
+.btn-secondary { background-color: #f1f5f9; color: #334155; border: 1px solid var(--border); margin-top: 15px;}
+.btn-secondary:hover { background-color: #e2e8f0; }
+.btn-danger { background-color: #fee2e2; color: #ef4444; border: none; padding: 4px 8px; font-size: 0.8rem; border-radius: 4px; width: auto;}
+.btn-danger:hover { background-color: #fca5a5; }
+
+/* Panel de Glosario */
+.glossary-card { background: #f8fafc; border-style: dashed; }
+.glossary-item { font-size: 0.84rem; color: #475569; margin-bottom: 12px; line-height: 1.4; }
+.glossary-item strong { color: var(--primary); }
+
+/* Caja de Resultados Avanzada */
+.results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
+.result-box {
+    background: #f8fafc; border: 1px solid var(--border);
+    padding: 15px; border-radius: var(--radius); text-align: center;
+}
+.result-box.highlighted { border-left: 4px solid var(--success); background: #f0fdf4; }
+.res-label { display: block; font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
+.res-value { display: block; font-size: 1.8rem; font-weight: 700; color: var(--primary); margin: 5px 0; }
+.res-value.cost { color: #b45309; }
+.res-sub { font-size: 0.75rem; color: var(--text-muted); }
+
+.math-workflow {
+    margin-top: 20px; background: #1e293b; color: #f8fafc;
+    padding: 15px; border-radius: var(--radius); font-family: monospace; font-size: 0.85rem;
+}
+.math-workflow h4 { margin-top: 0; color: #38bdf8; margin-bottom: 10px; }
+.equation { margin-bottom: 6px; }
+
+/* Tabla de Historial Clásica de TI */
+.table-responsive { width: 100%; overflow-x: auto; margin-top: 10px; }
+table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem; }
+th { background: #f1f5f9; padding: 12px; font-weight: 600; color: #475569; border-bottom: 2px solid var(--border); }
+td { padding: 12px; border-bottom: 1px solid var(--border); color: #334155; }
+tr:hover { background: #f8fafc; }
+.empty-state { text-align: center; color: var(--text-muted); padding: 30px; font-size: 0.9rem; }
